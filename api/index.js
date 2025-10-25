@@ -9,13 +9,15 @@ import cors from 'cors'
 import { departmentRoute } from '../src/routes/departmentRoute.js'
 import { loginRoute } from '../src/routes/loginRoute.js'
 
+
+const FRONT_END = 'https://tp-final-front-end-gaston-cazaubon.vercel.app/'
 // Instancia del servidor de express
 const app = express()
 
 // Cors sirve para que el backend pueda recibir solicitudes del frontend
 app.use(cors({
     // Permitimos todas las conexiones de cualquier ip:puerto
-    origin: "*",
+    origin: FRONT_END,
     // Decidimos cuales metodos son permitidos
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
