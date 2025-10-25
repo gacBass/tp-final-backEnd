@@ -10,7 +10,7 @@ import { departmentRoute } from '../src/routes/departmentRoute.js'
 import { loginRoute } from '../src/routes/loginRoute.js'
 
 
-const FRONT_END = 'https://tp-final-front-end-gaston-cazaubon.vercel.app/'
+const FRONT_END = 'https://tp-final-front-end-gaston-cazaubon.vercel.app'
 // Instancia del servidor de express
 const app = express()
 
