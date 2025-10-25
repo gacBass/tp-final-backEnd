@@ -1,7 +1,7 @@
 import { SECRET } from "../../config.js";
 import User from "../models/userModel.js"
 import { findUserByIdAndCheck } from "../utils/userHelpers.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 // Creamos el usuario
 
