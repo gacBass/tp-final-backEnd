@@ -1,13 +1,13 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { connectDB } from './db.js'
-import { PORT, SECRET } from './config.js'
-import { userRoute } from './src/routes/userRoute.js'
+import { connectDB } from '../db.js'
+import { PORT, SECRET } from '../config.js'
+import { userRoute } from '../src/routes/userRoute.js'
 import session from 'express-session'
-import { doctorRoute } from './src/routes/doctorRoute.js'
+import { doctorRoute } from '../src/routes/doctorRoute.js'
 import cors from 'cors'
-import { departmentRoute } from './src/routes/departmentRoute.js'
-import { loginRoute } from './src/routes/loginRoute.js'
+import { departmentRoute } from '../src/routes/departmentRoute.js'
+import { loginRoute } from '../src/routes/loginRoute.js'
 
 // Instancia del servidor de express
 const app = express()
@@ -15,7 +15,7 @@ const app = express()
 // Cors sirve para que el backend pueda recibir solicitudes del frontend
 app.use(cors({
     // Permitimos todas las conexiones de cualquier ip:puerto
-    origin: "http://localhost:5173",
+    origin: "*",
     // Decidimos cuales metodos son permitidos
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
