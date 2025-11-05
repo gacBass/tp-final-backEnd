@@ -47,7 +47,7 @@ Ensure you have the following installed:
 
     ```bash
     git clone <your-repo-url>
-    cd clase-11
+    cd <your folder>
     ```
 
 2.  **Install Dependencies**:
