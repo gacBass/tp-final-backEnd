@@ -4,10 +4,6 @@ import { verifyTokenMiddleware } from '../middlewares/verifyTokenMiddleware.js'
 
 export const userRoute = express.Router()
 
-// los endpoints -> http//localhost:3000/user/create
-
-//endpoints
-
-userRoute.post('/create', createUser)  //si fuera solo user directamente queria en blanco con los ''
+userRoute.post('/create', verifyTokenMiddleware, createUser)  
 userRoute.get('/getUsers', getUsers)
 userRoute.delete('/deleteUser/:id', verifyTokenMiddleware, deleteService)

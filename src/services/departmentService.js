@@ -14,7 +14,7 @@ export const getDepartmentsService = async () => {
     })
 
     if (Departments.length === 0) {
-        const error = new Error("there are no users baby")
+        const error = new Error("there are no departments to show")
         error.statusCode = 204
         throw error;
 

@@ -4,6 +4,8 @@ import { createDepartment, getDepartments, getDepartmentById, deleteDepartment }
  
 export const departmentRoute = express.Router()
 
+//Create - delete necesitan el verifyTokenMiddleware que no estan agregados aca porque falta la implementacion en la web y sea mostrable
+
 departmentRoute.post("/createDepartment", createDepartment)
 departmentRoute.get("/getDepartments", getDepartments)
 departmentRoute.get("/getDepartment/:id", getDepartmentById)

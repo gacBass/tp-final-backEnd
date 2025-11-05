@@ -12,7 +12,7 @@ export const getDoctorsService = async () => {
     const doctors = await Doctor.find()
 
     if (doctors.length === 0) {
-        const error = new Error("there are no users baby")
+        const error = new Error("there are no users to display")
         error.statusCode = 204
         throw error;
 
