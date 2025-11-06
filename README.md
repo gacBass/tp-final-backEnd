@@ -135,7 +135,86 @@ The API follows a clear and maintainable **Model-View-Controller (MVC)**-like st
 └── vercel.json              # Configuration for serverless deployment
 ```
 
+
 -----
+
+## 💾 Database Schemas (Mongoose Models)
+
+The API utilizes three primary models, all stored in MongoDB and managed via Mongoose. All models automatically include `createdAt` and `updatedAt` timestamps.
+
+### 👥 User Schema
+
+This model handles system users, primarily for authentication and access to the API's CRUD operations. Passwords are **automatically hashed** using `bcrypt` before being saved.
+
+| Field | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `email` | `String` | **Unique**, **Required**. Min 6 / Max 30 chars. Matches standard email format. | User's unique email address (used for login). |
+| `password` | `String` | **Required**. Custom validation for complexity. | Hashed password. Must be 6-12 chars with at least one number, one uppercase, and one lowercase letter. |
+| `createdAt` | `Date` | Auto-generated | Timestamp of creation. |
+| `updatedAt` | `Date` | Auto-generated | Timestamp of last modification. |
+
+#### **Example: Create User Request (`POST /api/user`)**
+
+```json
+{
+  "email": "admin@clinic.com",
+  "password": "SecurePassword123"
+}
+```
+
+-----
+
+### 👨‍⚕️ Doctor Schema
+
+This model stores detailed information about each medical professional.
+
+| Field | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `name` | `String` | **Required**. Min 2 / Max 30 chars, trimmed. | Doctor's first name. |
+| `lastName` | `String` | **Required**. Min 2 / Max 20 chars, trimmed. | Doctor's last name. |
+| `department` | `String` | **Required**. Min 2 / Max 30 chars. | The specific medical department or specialty (e.g., "Cardiology"). **Note: This is currently a String, not a reference to the Department model.** |
+| `city` | `String` | **Required**. Min 2 / Max 20 chars. | The city where the doctor is located. |
+| `country` | `String` | **Required**. Min 2 / Max 20 chars. | The country where the doctor is located. |
+| `avatar` | `String` | Max 100 chars. | Optional URL for the doctor's profile picture. |
+| `createdAt` | `Date` | Auto-generated | Timestamp of creation. |
+| `updatedAt` | `Date` | Auto-generated | Timestamp of last modification. |
+
+#### **Example: Create Doctor Request (`POST /api/doctor`)**
+
+```json
+{
+  "name": "Alan",
+  "lastName": "Turing",
+  "department": "Neurology",
+  "city": "Manchester",
+  "country": "UK",
+  "avatar": "https://example.com/avatars/alan.png"
+}
+```
+
+-----
+
+### 🏢 Department Schema
+
+This model manages the list of medical departments or specialties available in the system.
+
+| Field | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `name` | `String` | **Unique**, **Required**. Min 2 / Max 30 chars, trimmed. | The unique name of the medical department (e.g., "Pediatrics"). |
+| `createdAt` | `Date` | Auto-generated | Timestamp of creation. |
+| `updatedAt` | `Date` | Auto-generated | Timestamp of last modification. |
+
+#### **Example: Create Department Request (`POST /api/department`)**
+
+```json
+{
+  "name": "Cardiology"
+}
+```
+
+-----
+
+
 
 ## 👨‍🎓 About This Project
 
@@ -156,5 +235,3 @@ This project is intended for **educational purposes** only. Feel free to fork an
 > **Note**: As a university project, this API is an excellent learning resource but should be thoroughly reviewed and optimized before being considered for a production environment.
 
 -----
-
-Would you like me to help you draft example requests (e.g., using `curl` or a JSON payload) for the main endpoints, like user login or creating a new doctor?
